@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "InfoterminalHost (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "InfoterminalHost (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
