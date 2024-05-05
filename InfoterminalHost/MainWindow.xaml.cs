@@ -30,7 +30,7 @@ namespace InfoterminalHost
 
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked cool";
+            myButton.Content = "Clicked";
         }
     }
 }
