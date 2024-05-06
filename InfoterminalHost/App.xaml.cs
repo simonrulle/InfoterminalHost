@@ -1,4 +1,7 @@
-﻿using Microsoft.UI.Xaml;
+﻿using InfoterminalHost.Views;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -26,6 +29,10 @@ namespace InfoterminalHost
     /// </summary>
     public partial class App : Application
     {
+        public static IHost HostContainer { get; private set; }
+        
+        private Window m_window;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -45,6 +52,5 @@ namespace InfoterminalHost
             m_window.Activate();
         }
 
-        private Window m_window;
     }
 }
