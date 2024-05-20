@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using InfoterminalHost.Enums;
+using InfoterminalHost.Models;
 
 namespace InfoterminalHost.ViewModels
 {
@@ -53,34 +55,5 @@ namespace InfoterminalHost.ViewModels
         }
 
 
-    }
-
-    public class MediaItem
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ItemType MediaType { get; set; }
-        public Medium MediumInfo { get; set; }
-        public LocationType Location { get; set; }
-    }
-
-    public class Medium
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ItemType MediaType { get; set; }
-    }
-
-    public enum ItemType
-    {
-        Music,
-        Video,
-        Book
-    }
-
-    public enum LocationType
-    {
-        InCollection,
-        Loaned
     }
 }
