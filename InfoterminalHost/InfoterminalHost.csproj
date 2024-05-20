@@ -12,6 +12,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Views\CafeteriaPage.xaml" />
     <None Remove="Views\HomePage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
   </ItemGroup>
@@ -44,6 +45,11 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\CafeteriaPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\SettingsPage.xaml">
