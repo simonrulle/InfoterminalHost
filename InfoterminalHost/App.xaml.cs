@@ -1,4 +1,5 @@
-﻿using InfoterminalHost.Views;
+﻿using InfoterminalHost.ViewModels;
+using InfoterminalHost.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
@@ -48,8 +49,21 @@ namespace InfoterminalHost
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            RegisterComponents();
             m_window = new MainWindow();
             m_window.Activate();
+        }
+
+        /// <summary>
+        /// Initializes DI-Container
+        /// </summary>
+        private void RegisterComponents()
+        {
+            HostContainer = Host.CreateDefaultBuilder().ConfigureServices(services =>
+            {
+                services.AddTransient<CafeteriaViewModel>();
+                services.AddTransient<HomeViewModel>();
+            }).Build();
         }
 
     }
