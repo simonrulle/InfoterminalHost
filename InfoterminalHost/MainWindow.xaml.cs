@@ -42,8 +42,8 @@ namespace InfoterminalHost
             SystemBackdrop = new MicaBackdrop()
             { Kind = MicaKind.Base };
 
-            ExtendsContentIntoTitleBar = true;
-            SetTitleBar(AppTitleBar);
+            ExtendsContentIntoTitleBar = false;
+            // SetTitleBar(AppTitleBar);
         }
 
         public string GetAppTitleFromSystem()
@@ -89,8 +89,6 @@ namespace InfoterminalHost
                     .OfType<NavigationViewItem>()
                     .First(n => n.Tag.Equals(ContentFrame.SourcePageType.FullName.ToString()));
             }
-
-            NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
         }
 
     }
