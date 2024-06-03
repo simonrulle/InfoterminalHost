@@ -10,6 +10,6 @@ namespace InfoterminalHost.Interfaces
 {
     public interface ICafeteriaDataService
     {
-        Task PopulateData();
+        Task<MealPlan> GetMealPlan();
     }
 }

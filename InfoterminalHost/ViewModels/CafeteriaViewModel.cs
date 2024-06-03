@@ -13,16 +13,24 @@ namespace InfoterminalHost.ViewModels
     {
         private ICafeteriaDataService _cafeteriaDataService;
 
+        private MealPlan mealPlan;
+
         public CafeteriaViewModel(ICafeteriaDataService cafeteriaDataService) 
         { 
             _cafeteriaDataService = cafeteriaDataService;
-
             PopulateData();
         }
 
-        public async void PopulateData()
+        private async void PopulateData()
         {
-            await _cafeteriaDataService.PopulateData();
+            try
+            {
+                mealPlan = await _cafeteriaDataService.GetMealPlan();
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Fehler beim Abrufen oder Verarbeiten der JSON-Daten: {ex.Message}");
+            }
         }
 
     }

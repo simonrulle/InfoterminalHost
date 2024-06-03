@@ -24,27 +24,19 @@ namespace InfoterminalHost.Services
             client = new HttpClient();
         }
 
-        public async Task PopulateData()
+        public async Task<MealPlan> GetMealPlan()
         {
             // URL der JSON-Datenquelle
             string url = "https://speiseplan.stw-greifswald.de/speiseplan_json_hst.php";
+            
+            // JSON-Daten von der URL abrufen
+            string jsonString = await client.GetStringAsync(url);
 
-            try
-            {
-                // JSON-Daten von der URL abrufen
-                string jsonString = await client.GetStringAsync(url);
-
-                // JSON-Daten deserialisieren
-                MealPlan speiseplan = JsonConvert.DeserializeObject<MealPlan>(jsonString);
-
-                }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Fehler beim Abrufen oder Verarbeiten der JSON-Daten: {e.Message}");
-            }
+            // JSON-Daten deserialisieren
+            MealPlan mealPlan = JsonConvert.DeserializeObject<MealPlan>(jsonString);
+            
+            // Speiseplan zurückgeben
+            return mealPlan;
         }
-
-
     }
-
 }
