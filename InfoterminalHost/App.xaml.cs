@@ -1,4 +1,6 @@
-﻿using InfoterminalHost.ViewModels;
+﻿using InfoterminalHost.Interfaces;
+using InfoterminalHost.Services;
+using InfoterminalHost.ViewModels;
 using InfoterminalHost.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -61,6 +63,7 @@ namespace InfoterminalHost
         {
             HostContainer = Host.CreateDefaultBuilder().ConfigureServices(services =>
             {
+                services.AddSingleton<ICafeteriaDataService, CafeteriaDataService>();
                 services.AddTransient<CafeteriaViewModel>();
                 services.AddTransient<HomeViewModel>();
             }).Build();
