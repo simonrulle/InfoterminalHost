@@ -31,14 +31,15 @@ namespace InfoterminalHost.ViewModels
         private string selectedItem;
 
         [ObservableProperty]
+        private ObservableCollection<Category> selectedCategories = new ObservableCollection<Category>();
+
+        [ObservableProperty]
         private ObservableCollection<string> daten = new ObservableCollection<string>();
 
         public CafeteriaViewModel(ICafeteriaDataService cafeteriaDataService) 
         {
             isLoading = true;
             _cafeteriaDataService = cafeteriaDataService;
-            Daten = new ObservableCollection<string> { "Item1", "Item2", "Item3" };
-            SelectedItem = daten[0];
             PopulateData();
         }
 
@@ -51,7 +52,10 @@ namespace InfoterminalHost.ViewModels
                 foreach (Offering offering in mealPlan.Offering) 
                 {
                     Offerings.Add(offering);
+                    Daten.Add(offering.Date);
                 }
+
+                SelectedItem = Daten[0];
 
                 IsLoading = false;
             }
@@ -70,6 +74,22 @@ namespace InfoterminalHost.ViewModels
             {
                 SelectedItem = comboBox.SelectedItem as string;
             }
+            PopulateCategories(SelectedItem);
         }
+
+        private void PopulateCategories(string date)
+        {
+            Offering offering = Offerings.Single(o => o.Date == date);
+
+            ObservableCollection<Category> categories = new ObservableCollection<Category>();
+            
+            foreach (Category category in offering.Categories)
+            {
+                categories.Add(category);
+            }
+
+            SelectedCategories = categories;
+        }
+
     }
 }
