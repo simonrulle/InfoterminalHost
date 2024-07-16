@@ -40,10 +40,10 @@ namespace InfoterminalHost.ViewModels
         {
             isLoading = true;
             _cafeteriaDataService = cafeteriaDataService;
-            PopulateData();
+            PopulateDataAsync();
         }
 
-        private async void PopulateData()
+        private async void PopulateDataAsync()
         {
             try
             {
