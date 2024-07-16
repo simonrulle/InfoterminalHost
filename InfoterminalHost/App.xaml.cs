@@ -64,8 +64,9 @@ namespace InfoterminalHost
             HostContainer = Host.CreateDefaultBuilder().ConfigureServices(services =>
             {
                 services.AddSingleton<ICafeteriaDataService, CafeteriaDataService>();
-                services.AddTransient<CafeteriaViewModel>();
                 services.AddTransient<HomeViewModel>();
+                services.AddTransient<CafeteriaViewModel>();
+                services.AddTransient<RoomsViewModel>();              
             }).Build();
         }
 

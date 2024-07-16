@@ -44,8 +44,9 @@
             BackRequested="NavigationViewControl_BackRequested" 
             ItemInvoked="NavigationViewControl_ItemInvoked">
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Home" Content="Home" Tag="InfoterminalHost.Views.HomePage"/>
+                <NavigationViewItem Icon="Home" Content="Start" Tag="InfoterminalHost.Views.HomePage"/>
                 <NavigationViewItem Icon="Home" Content="Mensaplan" Tag="InfoterminalHost.Views.CafeteriaPage"/>
+                <NavigationViewItem Icon="Home" Content="Raumplan" Tag="InfoterminalHost.Views.RoomsPage"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated"/>
         </NavigationView>
