@@ -16,7 +16,7 @@ namespace InfoterminalHost.Services
     {
         public RoomsDataService() { }
 
-        public List<Person> GetPersonList()
+        public  List<Person> GetPersonList()
         {
             // Lade die Webseite
             var url = "https://www.hochschule-stralsund.de/host/im-portrait/mitarbeitende/";
@@ -76,7 +76,6 @@ namespace InfoterminalHost.Services
                         if (imgNode != null)
                         {
                             string srcValue = imgNode.GetAttributeValue("src", string.Empty);
-                            srcValue = srcValue.Replace("amp;", string.Empty);
                             imageUrls.Add(srcValue);
                         }
                     }

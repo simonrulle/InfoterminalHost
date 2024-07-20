@@ -2,6 +2,11 @@
 using HtmlAgilityPack;
 using InfoterminalHost.Interfaces;
 using InfoterminalHost.Models;
+using InfoterminalHost.Services;
+using Microsoft.Extensions.Logging;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +22,28 @@ namespace InfoterminalHost.ViewModels
 
         List<Person> personList;
 
+        [ObservableProperty]
+        List<Person> personsViewList;
+
+        [ObservableProperty]
+        private bool isDataLoadingError = false;
+
         public RoomsViewModel(IRoomsDataService roomsDataService)
         {
             _roomsDataService = roomsDataService;
-            personList = roomsDataService.GetPersonList();
+            PopulateData();
         }
  
+        private void PopulateData()
+        {
+            try
+            {
+                personList = PersonsViewList = _roomsDataService.GetPersonList();               
+            }
+            catch  
+            {
+                IsDataLoadingError = true;
+            }
+        }
     }
 }

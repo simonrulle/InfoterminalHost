@@ -5,11 +5,73 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:InfoterminalHost.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:InfoterminalHost.Models"
     mc:Ignorable="d"
     >
 
     <Grid>
+        <!-- Definiere die Zeilen -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Erste Zeile: Höhe automatisch an den Inhalt anpassen -->
+            <RowDefinition Height="*"/>
+            <!-- Zweite Zeile: Nimmt den restlichen Platz ein -->
+        </Grid.RowDefinitions>
+
+        <InfoBar
+            x:Name="InfoBar"
+            IsOpen="{x:Bind ViewModel.IsDataLoadingError, Mode=TwoWay}"
+            Title="Fehler"
+            Message="Es ist ein Fehler beim abrufen der Daten aufgetreten." 
+            />
+
+        <ListView
+            Grid.Row="1" 
+            ItemsSource="{x:Bind ViewModel.PersonsViewList}"
+            HorizontalAlignment="Center"          
+            MinWidth="1000">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Person">
+                    <Grid Margin="0,12,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="100"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image MaxHeight="100" Stretch="Fill" Margin="0,0,12,0" Grid.Column="0" >
+                            <Image.Source>
+                                <BitmapImage UriSource="https://www.hochschule-stralsund.de/index.php?eID=dumpFile&amp;t=p&amp;p=7605&amp;token=9c8e8ade2823e042343104b20b1713bb3def8a54" 
+                                DecodePixelHeight="100" 
+                                DecodePixelWidth="100" />
+                            </Image.Source>
+                        </Image>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical" >
+                            <TextBlock Text="{x:Bind Path=LastName}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <TextBlock Text="{x:Bind Path=FirstName}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <TextBlock Text="{x:Bind Path=Title}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <TextBlock Text="{x:Bind Path=Role}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <TextBlock Text="{x:Bind Path=Faculty}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <TextBlock Text="{x:Bind Path=PhoneNumber}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <TextBlock Text="{x:Bind Path=Fax}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <TextBlock Text="{x:Bind Path=Building}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <TextBlock Text="{x:Bind Path=Room}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
+                            <ItemsControl ItemsSource="{x:Bind Path=Emails}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 </Page>

@@ -38,7 +38,6 @@ namespace InfoterminalHost.ViewModels
 
         public CafeteriaViewModel(ICafeteriaDataService cafeteriaDataService) 
         {
-            isLoading = true;
             _cafeteriaDataService = cafeteriaDataService;
             PopulateDataAsync();
         }
