@@ -43,6 +43,7 @@
             BackRequested="NavigationViewControl_BackRequested">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Start" Tag="InfoterminalHost.Views.HomePage"/>
+                <NavigationViewItem Icon="Home" Content="KI-Assistent" Tag="InfoterminalHost.Views.AssistantPage"/>
                 <NavigationViewItem Icon="Home" Content="Mensaplan" Tag="InfoterminalHost.Views.CafeteriaPage"/>
                 <NavigationViewItem Icon="Home" Content="Raumplan" Tag="InfoterminalHost.Views.RoomsPage"/>
             </NavigationView.MenuItems>

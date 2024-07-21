@@ -35,6 +35,7 @@ namespace InfoterminalHost.ViewModels
                 switch (buttonContent)
                 {
                     case "KI-Assistent":
+                        _navigationService.Navigate(typeof(Views.AssistantPage));
                         break;
 
                     case "Mensaplan":

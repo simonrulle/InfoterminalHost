@@ -67,6 +67,7 @@ namespace InfoterminalHost
                 services.AddSingleton<ICafeteriaDataService, CafeteriaDataService>();
                 services.AddSingleton<IRoomsDataService, RoomsDataService>();
                 services.AddTransient<HomeViewModel>();
+                services.AddTransient<AssistantViewModel>();
                 services.AddTransient<CafeteriaViewModel>();
                 services.AddTransient<RoomsViewModel>();              
             }).Build();
