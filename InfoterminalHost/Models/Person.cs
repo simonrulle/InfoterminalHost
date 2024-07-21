@@ -11,7 +11,7 @@ namespace InfoterminalHost.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Title { get; set; }
-        public List<string> Images { get; set; }
+        public string ImageSource { get; set; }
         public string Role { get; set; }
         public string Faculty { get; set; }
         public string PhoneNumber { get; set; }

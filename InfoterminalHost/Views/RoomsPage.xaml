@@ -38,14 +38,19 @@
                             <ColumnDefinition Width="Auto" MinWidth="100"/>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-
-                        <Image MaxHeight="100" Stretch="Fill" Margin="0,0,12,0" Grid.Column="0" >
+                        
+                        <!--
+                        <Image Grid.Column="0" MaxHeight="100" Stretch="Fill" Margin="0,0,12,0" >
                             <Image.Source>
-                                <BitmapImage UriSource="https://www.hochschule-stralsund.de/index.php?eID=dumpFile&amp;t=p&amp;p=7605&amp;token=9c8e8ade2823e042343104b20b1713bb3def8a54" 
+                                <BitmapImage UriSource="{x:Bind Path=ImageSource}" 
                                 DecodePixelHeight="100" 
                                 DecodePixelWidth="100" />
                             </Image.Source>
                         </Image>
+                        -->
+
+                        <Image Source="https://www.hochschule-stralsund.de/index.php?eID=dumpFile&amp;t=p&amp;p=7959&amp;token=af31bd10c0fa45d037f4a18a24acbf87d7553ee3" Height="100" Width="100" />
+
 
                         <StackPanel Grid.Column="1" Orientation="Vertical" >
                             <TextBlock Text="{x:Bind Path=LastName}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
@@ -66,7 +71,8 @@
                             HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
                             <TextBlock Text="{x:Bind Path=Room}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
                             HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
-                            <ItemsControl ItemsSource="{x:Bind Path=Emails}"/>
+                            <ItemsControl ItemsSource="{x:Bind Path=Emails}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
+                            HorizontalAlignment="Left" Margin="0,0,0,6" MinHeight="20"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

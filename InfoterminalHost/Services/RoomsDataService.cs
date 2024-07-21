@@ -4,6 +4,7 @@ using InfoterminalHost.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -79,7 +80,9 @@ namespace InfoterminalHost.Services
                             imageUrls.Add(srcValue);
                         }
                     }
-                    person.Images = imageUrls.ToList();
+                    
+                    // TODO DELETE
+                    person.ImageSource = "https://www.hochschule-stralsund.de/index.php?eID=dumpFile&amp;t=p&amp;p=7605&amp;token=9c8e8ade2823e042343104b20b1713bb3def8a54";
                 }
 
                 /*
