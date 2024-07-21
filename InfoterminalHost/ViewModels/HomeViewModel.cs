@@ -8,52 +8,64 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using InfoterminalHost.Enums;
 using InfoterminalHost.Models;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using InfoterminalHost.Interfaces;
+using InfoterminalHost.Services;
+using System.Diagnostics.Metrics;
 
 namespace InfoterminalHost.ViewModels
 {
     public partial class HomeViewModel : ObservableObject
     {
-        
-        [ObservableProperty]
-        private ObservableCollection<MediaItem> items = new ObservableCollection<MediaItem>();
-        
+        private readonly INavigationService _navigationService;
 
         public HomeViewModel() 
         {
-            var cd = new MediaItem
-            {
-                Id = 1,
-                Name = "Classical Favorites",
-                MediaType = ItemType.Music,
-                MediumInfo = new Medium { Id = 1, Name = "Blu Ray", MediaType = ItemType.Book },
-                Location = LocationType.InCollection
-            };
-
-            var book = new MediaItem
-            {
-                Id = 2,
-                Name = "Classic Fairy Tales",
-                MediaType = ItemType.Book,
-                MediumInfo = new Medium { Id = 2, Name = "Hardcover", MediaType = ItemType.Book },
-                Location = LocationType.InCollection
-            };
-
-            var bluRay = new MediaItem
-            {
-                Id = 3,
-                Name = "The Mummy",
-                MediaType = ItemType.Video,
-                MediumInfo = new Medium { Id = 3, Name = "Blu Ray", MediaType = ItemType.Video },
-                Location = LocationType.InCollection
-            };
-
-            
-            items.Add(cd);
-            items.Add(book);
-            items.Add(bluRay);
-            
+            _navigationService = NavigationService.Instance;
         }
 
+        public void OnButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = sender as Button;
 
+            if (clickedButton != null)
+            {
+                string buttonContent = clickedButton.Content.ToString();
+
+                switch (buttonContent)
+                {
+                    case "KI-Assistent":
+                        break;
+
+                    case "Mensaplan":
+                        _navigationService.Navigate(typeof(Views.CafeteriaPage));
+                        break;
+
+                    case "Raumplan":
+                        _navigationService.Navigate(typeof(Views.RoomsPage));
+                        break;
+
+                    case "Neuigkeiten":
+                        break;
+
+                    case "Busplan":
+                        break;
+
+                    case "Stundenpläne":
+                        break;
+
+                    case "Wetter":
+                        break;
+
+                    case "Einstellungen":
+                        _navigationService.Navigate(typeof(Views.SettingsPage));
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
