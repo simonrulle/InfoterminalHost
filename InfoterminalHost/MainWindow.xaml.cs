@@ -1,3 +1,4 @@
+using InfoterminalHost.Services;
 using InfoterminalHost.Views;
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
@@ -32,15 +33,13 @@ namespace InfoterminalHost
         {
             this.InitializeComponent();
 
-            NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems.OfType<NavigationViewItem>().First();
-            ContentFrame.Navigate(
-                       typeof(Views.HomePage),
-                       null,
-                       new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo()
-                       );
+            var navigationService = NavigationService.Instance;
+            navigationService.Initialize(ContentFrame, NavigationViewControl);
 
-            SystemBackdrop = new MicaBackdrop()
-            { Kind = MicaKind.Base };
+            NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems.OfType<NavigationViewItem>().First();
+            ContentFrame.Navigate(typeof(Views.HomePage), null, new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo());
+
+            SystemBackdrop = new MicaBackdrop() { Kind = MicaKind.Base };
 
             ExtendsContentIntoTitleBar = false;
             // SetTitleBar(AppTitleBar);
@@ -51,45 +50,9 @@ namespace InfoterminalHost
             return Windows.ApplicationModel.Package.Current.DisplayName;
         }
 
-        private void NavigationViewControl_ItemInvoked(NavigationView sender,
-                      NavigationViewItemInvokedEventArgs args)
-        {
-            if (args.IsSettingsInvoked == true)
-            {
-                ContentFrame.Navigate(typeof(Views.SettingsPage), null, args.RecommendedNavigationTransitionInfo);
-            }
-            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null))
-            {
-                Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
-                ContentFrame.Navigate(
-                       newPage,
-                       null,
-                       args.RecommendedNavigationTransitionInfo
-                       );
-            }
-        }
-
         private void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
-            if (ContentFrame.CanGoBack) ContentFrame.GoBack();
+            NavigationService.Instance.GoBack();
         }
-
-        private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-            NavigationViewControl.IsBackEnabled = ContentFrame.CanGoBack;
-
-            if (ContentFrame.SourcePageType == typeof(Views.SettingsPage))
-            {
-                // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
-                NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
-            }
-            else if (ContentFrame.SourcePageType != null)
-            {
-                NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
-                    .OfType<NavigationViewItem>()
-                    .First(n => n.Tag.Equals(ContentFrame.SourcePageType.FullName.ToString()));
-            }
-        }
-
     }
 }

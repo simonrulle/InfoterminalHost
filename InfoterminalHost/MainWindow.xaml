@@ -12,7 +12,6 @@
         <MicaBackdrop Kind="Base"/>
     </Window.SystemBackdrop>
 
-
     <Grid>
         <Grid
             x:Name="AppTitleBar"
@@ -38,17 +37,16 @@
                 Style="{StaticResource CaptionTextBlockStyle}"
                 Text="{x:Bind GetAppTitleFromSystem()}"/>
         </Grid>
-        
+
         <NavigationView 
             x:Name="NavigationViewControl" 
-            BackRequested="NavigationViewControl_BackRequested" 
-            ItemInvoked="NavigationViewControl_ItemInvoked">
+            BackRequested="NavigationViewControl_BackRequested">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Start" Tag="InfoterminalHost.Views.HomePage"/>
                 <NavigationViewItem Icon="Home" Content="Mensaplan" Tag="InfoterminalHost.Views.CafeteriaPage"/>
                 <NavigationViewItem Icon="Home" Content="Raumplan" Tag="InfoterminalHost.Views.RoomsPage"/>
             </NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated"/>
+            <Frame x:Name="ContentFrame" />
         </NavigationView>
     </Grid>
 </Window>
