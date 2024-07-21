@@ -1,5 +1,4 @@
-﻿using InfoterminalHost.Enums;
-using InfoterminalHost.Interfaces;
+﻿using InfoterminalHost.Interfaces;
 using InfoterminalHost.Models;
 using Newtonsoft.Json;
 using System;

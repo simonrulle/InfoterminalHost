@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
-using InfoterminalHost.Enums;
 using InfoterminalHost.Models;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;

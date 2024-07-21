@@ -5,12 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:InfoterminalHost.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:InfoterminalHost.Models" xmlns:local1="using:InfoterminalHost"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:InfoterminalHost.Models" xmlns:local11="using:InfoterminalHost.Converter"
     mc:Ignorable="d"
     >
 
     <Page.Resources>
-        <local1:UriToImageSourceConverter x:Key="UriToImageSourceConverter"/>
+        <local11:UriToImageSourceConverter x:Key="UriToImageSourceConverter"/>
     </Page.Resources>
 
     <Grid>

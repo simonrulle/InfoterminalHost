@@ -1,5 +1,4 @@
-﻿using InfoterminalHost.Enums;
-using InfoterminalHost.Models;
+﻿using InfoterminalHost.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
