@@ -17,7 +17,7 @@ namespace InfoterminalHost.Services
     {
         public RoomsDataService() { }
 
-        public  List<Person> GetPersonList()
+        public ObservableCollection<Person> GetPersonList()
         {
             // Lade die Webseite
             var url = "https://www.hochschule-stralsund.de/host/im-portrait/mitarbeitende/";
@@ -28,7 +28,7 @@ namespace InfoterminalHost.Services
             var personNodes = doc.DocumentNode.SelectNodes("//div[@class='contact-list__person']");
 
             // Erstelle eine Liste von Personen
-            var personList = new List<Person>();
+            var personList = new ObservableCollection<Person>();
 
             // Loop durch alle Personen (Mapping!)
             foreach (var personNode in personNodes)
@@ -77,12 +77,16 @@ namespace InfoterminalHost.Services
                         if (imgNode != null)
                         {
                             string srcValue = imgNode.GetAttributeValue("src", string.Empty);
+                            srcValue = srcValue.Replace("amp;", string.Empty);
                             imageUrls.Add(srcValue);
                         }
                     }
+
+                    if (imageUrls.Count > 0)
+                    {
+                        person.ImageUri = new Uri(imageUrls[0]);
+                    }
                     
-                    // TODO DELETE
-                    person.ImageSource = "https://www.hochschule-stralsund.de/index.php?eID=dumpFile&amp;t=p&amp;p=7605&amp;token=9c8e8ade2823e042343104b20b1713bb3def8a54";
                 }
 
                 /*

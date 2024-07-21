@@ -5,9 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:InfoterminalHost.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:InfoterminalHost.Models"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:InfoterminalHost.Models" xmlns:local1="using:InfoterminalHost"
     mc:Ignorable="d"
     >
+
+    <Page.Resources>
+        <local1:UriToImageSourceConverter x:Key="UriToImageSourceConverter"/>
+    </Page.Resources>
 
     <Grid>
         <!-- Definiere die Zeilen -->
@@ -26,8 +30,9 @@
             />
 
         <ListView
+            x:Name="ListViewItems"
+            ItemsSource="{x:Bind ViewModel.persons}"
             Grid.Row="1" 
-            ItemsSource="{x:Bind ViewModel.PersonsViewList}"
             HorizontalAlignment="Center"          
             MinWidth="1000">
 
@@ -35,23 +40,11 @@
                 <DataTemplate x:DataType="model:Person">
                     <Grid Margin="0,12,0,12">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="100"/>
+                            <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        
-                        <!--
-                        <Image Grid.Column="0" MaxHeight="100" Stretch="Fill" Margin="0,0,12,0" >
-                            <Image.Source>
-                                <BitmapImage UriSource="{x:Bind Path=ImageSource}" 
-                                DecodePixelHeight="100" 
-                                DecodePixelWidth="100" />
-                            </Image.Source>
-                        </Image>
-                        -->
 
-                        <Image Source="https://www.hochschule-stralsund.de/index.php?eID=dumpFile&amp;t=p&amp;p=7959&amp;token=af31bd10c0fa45d037f4a18a24acbf87d7553ee3" Height="100" Width="100" />
-
-
+                        <Image Grid.Column="0" Width="100" Height="100" Source="{x:Bind ImageUri, Converter={StaticResource UriToImageSourceConverter}}" Margin="0,0,12,0" />
                         <StackPanel Grid.Column="1" Orientation="Vertical" >
                             <TextBlock Text="{x:Bind Path=LastName}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
                             HorizontalAlignment="Left" Margin="0,0,0,6" LineHeight="20"/>
@@ -74,6 +67,7 @@
                             <ItemsControl ItemsSource="{x:Bind Path=Emails}" FontSize="14" FontWeight="SemiBold" Style="{ThemeResource BaseTextBlockStyle}"
                             HorizontalAlignment="Left" Margin="0,0,0,6" MinHeight="20"/>
                         </StackPanel>
+
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

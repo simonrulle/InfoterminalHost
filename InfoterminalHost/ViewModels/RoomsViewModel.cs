@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -20,13 +21,10 @@ namespace InfoterminalHost.ViewModels
     {
         private IRoomsDataService _roomsDataService;
 
-        List<Person> personList;
-
-        [ObservableProperty]
-        List<Person> personsViewList;
-
         [ObservableProperty]
         private bool isDataLoadingError = false;
+
+        public ObservableCollection<Person> persons { get; set; }
 
         public RoomsViewModel(IRoomsDataService roomsDataService)
         {
@@ -38,7 +36,7 @@ namespace InfoterminalHost.ViewModels
         {
             try
             {
-                personList = PersonsViewList = _roomsDataService.GetPersonList();               
+                persons = _roomsDataService.GetPersonList();               
             }
             catch  
             {
@@ -46,4 +44,6 @@ namespace InfoterminalHost.ViewModels
             }
         }
     }
+
+    
 }
