@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:InfoterminalHost.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:InfoterminalHost.Models"
     mc:Ignorable="d"
     >
 
@@ -23,10 +23,10 @@
         <Border Grid.Row="0" Background="WhiteSmoke">
             <StackPanel HorizontalAlignment="Center" Margin="20">
                 <!-- Liste mit 4 einfachen Sätzen -->
-                <TextBlock Text="Diese Komponente ist ein KI-Assistent, welcher Anwender bei der Filterung von gesuchten Informationen unterstützen soll" Margin="0,0,0,10"/>
-                <TextBlock Text="Es handelt sich hier um einen Service zur Erkennung von natürlicher Sprache und der Ableitung von Intentionen bei der Suche" Margin="0,0,0,10"/>
-                <TextBlock Text="Hinweis: Wenn Sie verschiedene Ziele mit ihrer Suche verfolgen, wird der Service womöglich nur eine richtig Klassifizieren" Margin="0,0,0,10"/>
-                <TextBlock Text="Bei Fragen und Anregungen gerne an simon.rullmann@hochschule-stralsund.de wenden" Margin="0,0,0,10"/>
+                <TextBlock Text="- Diese Komponente ist ein KI-Assistent, welcher Anwender bei der Filterung von gesuchten Informationen unterstützen soll" Margin="0,0,0,10"/>
+                <TextBlock Text="- Es handelt sich hier um einen Service zur Erkennung von natürlicher Sprache und der Ableitung von Intentionen bei der Suche" Margin="0,0,0,10"/>
+                <TextBlock Text="- Hinweis: Wenn Sie verschiedene Ziele mit ihrer Suche verfolgen, wird der Service womöglich nur eine richtig Klassifizieren" Margin="0,0,0,10"/>
+                <TextBlock Text="- Bei Fragen und Anregungen gerne an simon.rullmann@hochschule-stralsund.de wenden" Margin="0,0,0,10"/>
             </StackPanel>
         </Border>
 
@@ -48,9 +48,153 @@
         </Border>
 
         <Border Grid.Row="2">
-            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+            <StackPanel Orientation="Vertical" Margin="0,20,0,0" HorizontalAlignment="Center">
                 <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=TwoWay}" Height="100" Width="100" Background="LightGray"/>
-                <TextBlock Text="This is a placeholder" HorizontalAlignment="Center" Margin="20"></TextBlock>
+
+                <!-- ListView für FilterMealPlan -->
+                <ListView ItemsSource="{x:Bind ViewModel.filteredDishes}" Visibility="Collapsed">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Datum" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Kategorie" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="2" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Gericht" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="3" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Preis Studenten" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="4" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Preis Mitarbeiter" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="5" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Preis Gäste" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="6" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Inhaltsstoffe" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:ExtendedDish">
+                            <Grid IsHitTestVisible="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*" MinWidth="150" MaxWidth="300"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{x:Bind Path=Date}"/>
+                                <TextBlock Grid.Column="1" Text="{x:Bind Path=CategoryName}"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind Path=Name}"/>
+                                <TextBlock Grid.Column="3" Text="{x:Bind Path=StudentPrice}"/>
+                                <TextBlock Grid.Column="4" Text="{x:Bind Path=EmployeePrice}"/>
+                                <TextBlock Grid.Column="5" Text="{x:Bind Path=GuestPrice}"/>
+                                <TextBlock Grid.Column="6" Text="{x:Bind Path=Ingredient}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <!-- ListView für SearchPerson -->
+                <ListView ItemsSource="{x:Bind ViewModel.filteredPersons}" Visibility="Collapsed">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Name" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="0" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Vorname" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Titel" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="2" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Fakultät" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="3" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Rolle" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="4" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Gebäude" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="5" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Raum" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="6" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Telefonnummer" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                                <Border Grid.Column="7" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                                    <TextBlock Text="Fax" Margin="5,0,0,0" FontWeight="Bold"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Person">
+                            <Grid IsHitTestVisible="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{x:Bind Path=FirstName}"/>
+                                <TextBlock Grid.Column="1" Text="{x:Bind Path=LastName}"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind Path=Title}"/>
+                                <TextBlock Grid.Column="3" Text="{x:Bind Path=Faculty}"/>
+                                <TextBlock Grid.Column="4" Text="{x:Bind Path=Role}"/>
+                                <TextBlock Grid.Column="5" Text="{x:Bind Path=Building}"/>
+                                <TextBlock Grid.Column="6" Text="{x:Bind Path=Room}"/>
+                                <TextBlock Grid.Column="7" Text="{x:Bind Path=Fax}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
             </StackPanel>
         </Border>
         
