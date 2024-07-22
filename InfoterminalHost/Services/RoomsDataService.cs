@@ -63,6 +63,11 @@ namespace InfoterminalHost.Services
                     person.Title = name.ChildNodes[1].InnerText;
                 }
 
+                if (!string.IsNullOrWhiteSpace(person.LastName) && !string.IsNullOrWhiteSpace(person.FirstName)) 
+                {
+                    person.Fullname = person.FirstName + " " + person.LastName;
+                }
+
                 /*
                  * Map Images
                  */

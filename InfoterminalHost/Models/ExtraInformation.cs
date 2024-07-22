@@ -14,5 +14,8 @@ namespace InfoterminalHost.Models
 
         [JsonProperty("value")]
         public string Value { get; set; }
+
+        [JsonProperty("key")]
+        public string Key { get; set; }
     }
 }

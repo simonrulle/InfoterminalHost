@@ -10,6 +10,7 @@ namespace InfoterminalHost.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Fullname { get; set; }
         public string Title { get; set; }
         public Uri ImageUri { get; set; }
         public string Role { get; set; }
