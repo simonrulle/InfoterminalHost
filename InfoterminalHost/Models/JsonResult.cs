@@ -10,9 +10,9 @@ namespace InfoterminalHost.Models
     public class JsonResult
     {
         [JsonProperty("kind")]
-        public string? Kind { get; set; }
+        public string Kind { get; set; }
 
         [JsonProperty("result")]
-        public CLUOutput? Result { get; set; }
+        public CLUOutput Result { get; set; }
     }
 }

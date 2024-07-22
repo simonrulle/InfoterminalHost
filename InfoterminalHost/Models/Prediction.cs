@@ -10,16 +10,16 @@ namespace InfoterminalHost.Models
     public partial class Prediction
     {
         [JsonProperty("topIntent")]
-        public string? TopIntent { get; set; }
+        public string TopIntent { get; set; }
 
         [JsonProperty("projectKind")]
-        public string? ProjectKind { get; set; }
+        public string ProjectKind { get; set; }
 
         [JsonProperty("intents")]
-        public List<Intent>? Intents { get; set; }
+        public List<Intent> Intents { get; set; }
 
         [JsonProperty("entities")]
-        public List<Entity>? Entities { get; set; }
+        public List<Entity> Entities { get; set; }
     }
 }
 

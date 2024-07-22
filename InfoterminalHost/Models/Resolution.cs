@@ -10,15 +10,15 @@ namespace InfoterminalHost.Models
     public partial class Resolution
     {
         [JsonProperty("resolutionKind")]
-        public string? ResolutionKind { get; set; }
+        public string ResolutionKind { get; set; }
 
         [JsonProperty("dateTimeSubKind")]
-        public string? DateTimeSubKind { get; set; }
+        public string DateTimeSubKind { get; set; }
 
         [JsonProperty("timex")]
-        public string? Timex { get; set; }
+        public string Timex { get; set; }
 
         [JsonProperty("value")]
-        public string? Value { get; set; }
+        public string Value { get; set; }
     }
 }

@@ -10,9 +10,9 @@ namespace InfoterminalHost.Models
     public partial class ExtraInformation
     {
         [JsonProperty("extraInformationKind")]
-        public string? ExtraInformationKind { get; set; }
+        public string ExtraInformationKind { get; set; }
 
         [JsonProperty("value")]
-        public string? Value { get; set; }
+        public string Value { get; set; }
     }
 }

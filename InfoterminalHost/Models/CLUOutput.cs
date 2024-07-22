@@ -10,9 +10,9 @@ namespace InfoterminalHost.Models
     public partial class CLUOutput
     {
         [JsonProperty("query")]
-        public string? Query { get; set; }
+        public string Query { get; set; }
 
         [JsonProperty("prediction")]
-        public Prediction? Prediction { get; set; }
+        public Prediction Prediction { get; set; }
     }
 }

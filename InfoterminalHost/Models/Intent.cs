@@ -10,9 +10,9 @@ namespace InfoterminalHost.Models
     public partial class Intent
     {
         [JsonProperty("category")]
-        public string? Category { get; set; }
+        public string Category { get; set; }
 
         [JsonProperty("confidenceScore")]
-        public decimal? ConfidenceScore { get; set; }
+        public decimal ConfidenceScore { get; set; }
     }
 }

@@ -10,24 +10,24 @@ namespace InfoterminalHost.Models
     public partial class Entity
     {
         [JsonProperty("category")]
-        public string? Category { get; set; }
+        public string Category { get; set; }
 
         [JsonProperty("text")]
-        public string? Text { get; set; }
+        public string Text { get; set; }
 
         [JsonProperty("offset")]
-        public int? Offset { get; set; }
+        public int Offset { get; set; }
 
         [JsonProperty("length")]
-        public int? Length { get; set; }
+        public int Length { get; set; }
 
         [JsonProperty("confidenceScore")]
-        public decimal? ConfidenceScore { get; set; }
+        public decimal ConfidenceScore { get; set; }
 
         [JsonProperty("resolutions")]
-        public List<Resolution>? Resolutions { get; set; }
+        public List<Resolution> Resolutions { get; set; }
 
         [JsonProperty("extraInformations")]
-        public List<ExtraInformation>? ExtraInformations { get; set; }
+        public List<ExtraInformation> ExtraInformations { get; set; }
     }
 }
