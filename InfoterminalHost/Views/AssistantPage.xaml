@@ -9,7 +9,52 @@
     mc:Ignorable="d"
     >
 
-    <Grid>
+    <Grid Margin="20">
+        <!-- Definiere die Zeilen -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Erste Zeile: Höhe automatisch an den Inhalt anpassen -->
+            <RowDefinition Height="Auto"/>
+            <!-- Zweite Zeile: Höhe automatisch an den Inhalt anpassen -->
+            <RowDefinition Height="*"/>
+            <!-- Dritte Zeile: Nimmt den restlichen Platz ein -->
+        </Grid.RowDefinitions>
 
+        <Border Grid.Row="0" Background="WhiteSmoke">
+            <StackPanel HorizontalAlignment="Center" Margin="20">
+                <!-- Liste mit 4 einfachen Sätzen -->
+                <TextBlock Text="Diese Komponente ist ein KI-Assistent, welcher Anwender bei der Filterung von gesuchten Informationen unterstützen soll" Margin="0,0,0,10"/>
+                <TextBlock Text="Es handelt sich hier um einen Service zur Erkennung von natürlicher Sprache und der Ableitung von Intentionen bei der Suche" Margin="0,0,0,10"/>
+                <TextBlock Text="Hinweis: Wenn Sie verschiedene Ziele mit ihrer Suche verfolgen, wird der Service womöglich nur eine richtig Klassifizieren" Margin="0,0,0,10"/>
+                <TextBlock Text="Bei Fragen und Anregungen gerne an simon.rullmann@hochschule-stralsund.de wenden" Margin="0,0,0,10"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Background="WhiteSmoke">
+            <Grid Margin="20" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Grid.Column="0" Source="ms-appx:///Assets/StoreLogo.png" Width="100" Height="100" Margin="10"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Width="400" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalAlignment="Top" Text="{x:Bind ViewModel.Prompt, Mode=TwoWay}" Margin="10"/>
+                <Button Grid.Row="1" Grid.Column="1" Click="{x:Bind ViewModel.OnButtonClick}" Style="{StaticResource AccentButtonStyle}" Content="Frag die KI" HorizontalAlignment="Right" Margin="10"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2">
+            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+                <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=TwoWay}" Height="100" Width="100" Background="LightGray"/>
+                <TextBlock Text="This is a placeholder" HorizontalAlignment="Center" Margin="20"></TextBlock>
+            </StackPanel>
+        </Border>
+        
+
+        
     </Grid>
 </Page>

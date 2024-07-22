@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using InfoterminalHost.Clients;
 using InfoterminalHost.Models;
+using Microsoft.UI.Xaml;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace InfoterminalHost.ViewModels
     {
         PredictionHandler predictionHandler;
 
+        [ObservableProperty]
+        bool isLoading = false;
+
+        [ObservableProperty]
+        string prompt = "";
+
         public AssistantViewModel()
         {
             this.predictionHandler = new PredictionHandler();
@@ -27,7 +34,7 @@ namespace InfoterminalHost.ViewModels
             try
             {
                 Response response = await predictionHandler.MakePredictionAsync("In welchem Raum sitzt Frau Wenzel?");
-                JsonResult result = JsonConvert.DeserializeObject<JsonResult>(response.Content.ToString());           
+                JsonResult result = JsonConvert.DeserializeObject<JsonResult>(response.Content.ToString());
             }
             catch (RequestFailedException ex)
             {
@@ -35,5 +42,9 @@ namespace InfoterminalHost.ViewModels
             }
         }
 
+        public void OnButtonClick(object sender, RoutedEventArgs e)
+        {
+            IsLoading = true;
+        }
     }
 }
