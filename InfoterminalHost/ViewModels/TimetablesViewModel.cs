@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using InfoterminalHost.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace InfoterminalHost.ViewModels
 {
     public partial class TimetablesViewModel : ObservableObject
     {
-        public TimetablesViewModel() { }
+        private ITimetablesDataService _timetablesDataService;
+
+        public TimetablesViewModel(ITimetablesDataService timetablesDataService) 
+        {
+            _timetablesDataService = timetablesDataService;
+        }
     }
 }
