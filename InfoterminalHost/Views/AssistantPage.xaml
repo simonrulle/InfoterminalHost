@@ -16,6 +16,8 @@
             <!-- Erste Zeile: Höhe automatisch an den Inhalt anpassen -->
             <RowDefinition Height="Auto"/>
             <!-- Zweite Zeile: Höhe automatisch an den Inhalt anpassen -->
+            <RowDefinition Height="Auto"/>
+            <!-- Zweite Zeile: Höhe automatisch an den Inhalt anpassen -->
             <RowDefinition Height="*"/>
             <!-- Dritte Zeile: Nimmt den restlichen Platz ein -->
         </Grid.RowDefinitions>
@@ -47,9 +49,17 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="2">
-            <StackPanel Orientation="Vertical" Margin="0,20,0,0" HorizontalAlignment="Center">
-                <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=TwoWay}" Height="100" Width="100" Background="LightGray"/>
+        <ProgressRing Grid.Row="2" IsActive="{x:Bind ViewModel.IsLoading, Mode=TwoWay}" Height="100" Width="100" Background="LightGray" VerticalAlignment="Center"/>
+
+        <ScrollView 
+            Grid.Row="3"
+            Height="Auto" 
+            Width="Auto"
+            IsTabStop="True"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Center"
+            >
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
 
                 <!-- ListView für FilterMealPlan -->
                 <ListView ItemsSource="{x:Bind ViewModel.filteredDishes}" Visibility="{x:Bind ViewModel.FilteredDishesVisibilityStatus, Mode=TwoWay}">
@@ -115,8 +125,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
-
+                
                 <!-- ListView für SearchPerson -->
                 <ListView ItemsSource="{x:Bind ViewModel.filteredPersons}" Visibility="{x:Bind ViewModel.FilteredPersonsVisibilityStatus, Mode=TwoWay}">
                     <ListView.HeaderTemplate>
@@ -195,6 +204,6 @@
                 </ListView>
 
             </StackPanel>
-        </Border>
+        </ScrollView>
     </Grid>
 </Page>
