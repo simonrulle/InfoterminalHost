@@ -53,6 +53,7 @@ namespace InfoterminalHost.ViewModels
                         break;
 
                     case "Stundenpläne":
+                        _navigationService.Navigate(typeof(Views.TimetablesPage));
                         break;
 
                     case "Wetter":
