@@ -66,7 +66,7 @@ namespace InfoterminalHost.ViewModels
         public async void OnAiSearchClick(object sender, RoutedEventArgs e)
         {
             FilteredDishesVisibilityStatus = VisibilityTypes.Collapsed.ToString();
-            FilteredDishesVisibilityStatus = VisibilityTypes.Collapsed.ToString();
+            FilteredPersonsVisibilityStatus = VisibilityTypes.Collapsed.ToString();
             filteredDishes.Clear();
             filteredPersons.Clear();
 
