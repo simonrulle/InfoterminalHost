@@ -59,23 +59,66 @@
             Width="Auto"
             IsTabStop="True"
             VerticalAlignment="Top" 
-            HorizontalAlignment="Center"
-            >
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-
+            HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                 <controls:DataGrid 
                     ItemsSource="{x:Bind ViewModel.filteredDishes}" 
                     AutoGenerateColumns="False"
                     IsHitTestVisible="False"
-                    Visibility="{x:Bind ViewModel.FilteredDishesVisibilityStatus, Mode=TwoWay}">
+                    Visibility="{x:Bind ViewModel.FilteredDishesVisibilityStatus, Mode=TwoWay}"
+                    AlternatingRowBackground="WhiteSmoke"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch">
                     <controls:DataGrid.Columns>
-                        <controls:DataGridTextColumn Header="Datum" Binding="{Binding Date}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Kategorie" Binding="{Binding CategoryName}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Gericht" Binding="{Binding Name}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Preis für Studenten" Binding="{Binding StudentPrice}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Preis für Mitarbeiter" Binding="{Binding EmployeePrice}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Preis für Gäste" Binding="{Binding GuestPrice}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Inhaltsstoffe" Binding="{Binding Ingredient}" MaxWidth="200" />
+                        <controls:DataGridTemplateColumn Header="Datum" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Date}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Kategorie" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CategoryName}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Gericht" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Preis für Studenten" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding StudentPrice}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Preis für Mitarbeiter" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding EmployeePrice}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Preis für Gäste" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding GuestPrice}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Inhaltsstoffe" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Ingredient}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
                     </controls:DataGrid.Columns>
                 </controls:DataGrid>
 
@@ -84,21 +127,77 @@
                     AutoGenerateColumns="False"
                     IsHitTestVisible="False"
                     Visibility="{x:Bind ViewModel.FilteredPersonsVisibilityStatus, Mode=TwoWay}"
-                    >
+                    AlternatingRowBackground="WhiteSmoke"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch">
                     <controls:DataGrid.Columns>
-                        <controls:DataGridTextColumn Header="Name" Binding="{Binding LastName}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Titel" Binding="{Binding Title}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Fakultät" Binding="{Binding Faculty}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Rolle" Binding="{Binding Role}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Gebäude" Binding="{Binding Building}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Raum" Binding="{Binding Room}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Telefon" Binding="{Binding PhoneNumber}" MaxWidth="200" />
-                        <controls:DataGridTextColumn Header="Fax" Binding="{Binding Fax}" MaxWidth="200" />
+                        <controls:DataGridTemplateColumn Header="Name" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding LastName}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Vorname" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FirstName}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Titel" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Fakultät" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Faculty}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Rolle" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Role}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Gebäude" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Building}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Raum" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Room}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Telefon" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PhoneNumber}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn Header="Fax" Width="*">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Fax}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
                     </controls:DataGrid.Columns>
                 </controls:DataGrid>
-
             </StackPanel>
         </ScrollView>
+
     </Grid>
 </Page>
