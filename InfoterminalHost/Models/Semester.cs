@@ -10,6 +10,6 @@ namespace InfoterminalHost.Models
     {
         public string Name { get; set; }
 
-        public Uri Timetable { get; set; }
+        public string Timetable { get; set; }
     }
 }

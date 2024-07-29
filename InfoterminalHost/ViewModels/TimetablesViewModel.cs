@@ -15,6 +15,7 @@ namespace InfoterminalHost.ViewModels
         public TimetablesViewModel(ITimetablesDataService timetablesDataService) 
         {
             _timetablesDataService = timetablesDataService;
+            var courses = _timetablesDataService.GetCoursesOfStudy();
         }
     }
 }
