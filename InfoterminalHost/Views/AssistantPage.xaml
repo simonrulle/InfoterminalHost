@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:InfoterminalHost.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:InfoterminalHost.Models"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:model="using:InfoterminalHost.Models" 
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     mc:Ignorable="d"
     >
 
@@ -61,147 +63,40 @@
             >
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
 
-                <!-- ListView für FilterMealPlan -->
-                <ListView ItemsSource="{x:Bind ViewModel.filteredDishes}" Visibility="{x:Bind ViewModel.FilteredDishesVisibilityStatus, Mode=TwoWay}">
-                    <ListView.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                </Grid.ColumnDefinitions>
+                <controls:DataGrid 
+                    ItemsSource="{x:Bind ViewModel.filteredDishes}" 
+                    AutoGenerateColumns="False"
+                    IsHitTestVisible="False"
+                    Visibility="{x:Bind ViewModel.FilteredDishesVisibilityStatus, Mode=TwoWay}">
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridTextColumn Header="Datum" Binding="{Binding Date}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Kategorie" Binding="{Binding CategoryName}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Gericht" Binding="{Binding Name}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Preis für Studenten" Binding="{Binding StudentPrice}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Preis für Mitarbeiter" Binding="{Binding EmployeePrice}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Preis für Gäste" Binding="{Binding GuestPrice}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Inhaltsstoffe" Binding="{Binding Ingredient}" MaxWidth="200" />
+                    </controls:DataGrid.Columns>
+                </controls:DataGrid>
 
-                                <Border Grid.Column="0" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Datum" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Kategorie" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="2" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Gericht" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="3" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Preis Studenten" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="4" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Preis Mitarbeiter" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="5" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Preis Gäste" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="6" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Inhaltsstoffe" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.HeaderTemplate>
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:ExtendedDish">
-                            <Grid IsHitTestVisible="False">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="*" MinWidth="150" MaxWidth="300"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Text="{x:Bind Path=Date}"/>
-                                <TextBlock Grid.Column="1" Text="{x:Bind Path=CategoryName}"/>
-                                <TextBlock Grid.Column="2" Text="{x:Bind Path=Name}"/>
-                                <TextBlock Grid.Column="3" Text="{x:Bind Path=StudentPrice}"/>
-                                <TextBlock Grid.Column="4" Text="{x:Bind Path=EmployeePrice}"/>
-                                <TextBlock Grid.Column="5" Text="{x:Bind Path=GuestPrice}"/>
-                                <TextBlock Grid.Column="6" Text="{x:Bind Path=Ingredient}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                
-                <!-- ListView für SearchPerson -->
-                <ListView ItemsSource="{x:Bind ViewModel.filteredPersons}" Visibility="{x:Bind ViewModel.FilteredPersonsVisibilityStatus, Mode=TwoWay}">
-                    <ListView.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Border Grid.Column="0" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Name" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Vorname" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="2" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Titel" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="3" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Fakultät" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="4" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Rolle" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="5" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Gebäude" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="6" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Raum" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="7" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Telefonnummer" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                                <Border Grid.Column="8" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                                    <TextBlock Text="Fax" Margin="5,0,0,0" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.HeaderTemplate>
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Person">
-                            <Grid IsHitTestVisible="False">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="150"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Text="{x:Bind Path=LastName}"/>
-                                <TextBlock Grid.Column="1" Text="{x:Bind Path=FirstName}"/>
-                                <TextBlock Grid.Column="2" Text="{x:Bind Path=Title}"/>
-                                <TextBlock Grid.Column="3" Text="{x:Bind Path=Faculty}"/>
-                                <TextBlock Grid.Column="4" Text="{x:Bind Path=Role}"/>
-                                <TextBlock Grid.Column="5" Text="{x:Bind Path=Building}"/>
-                                <TextBlock Grid.Column="6" Text="{x:Bind Path=Room}"/>
-                                <TextBlock Grid.Column="7" Text="{x:Bind Path=PhoneNumber}"/>
-                                <TextBlock Grid.Column="8" Text="{x:Bind Path=Fax}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <controls:DataGrid 
+                    ItemsSource="{x:Bind ViewModel.filteredPersons, Mode=TwoWay}" 
+                    AutoGenerateColumns="False"
+                    IsHitTestVisible="False"
+                    Visibility="{x:Bind ViewModel.FilteredPersonsVisibilityStatus, Mode=TwoWay}"
+                    >
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridTextColumn Header="Name" Binding="{Binding LastName}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Titel" Binding="{Binding Title}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Fakultät" Binding="{Binding Faculty}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Rolle" Binding="{Binding Role}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Gebäude" Binding="{Binding Building}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Raum" Binding="{Binding Room}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Telefon" Binding="{Binding PhoneNumber}" MaxWidth="200" />
+                        <controls:DataGridTextColumn Header="Fax" Binding="{Binding Fax}" MaxWidth="200" />
+                    </controls:DataGrid.Columns>
+                </controls:DataGrid>
 
             </StackPanel>
         </ScrollView>
