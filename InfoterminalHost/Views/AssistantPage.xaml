@@ -94,21 +94,30 @@
                         <controls:DataGridTemplateColumn Header="Preis für Studenten" Width="*">
                             <controls:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding StudentPrice}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
+                                        <TextBlock Text="{Binding StudentPrice}" />
+                                        <TextBlock Text="€" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </controls:DataGridTemplateColumn.CellTemplate>
                         </controls:DataGridTemplateColumn>
                         <controls:DataGridTemplateColumn Header="Preis für Mitarbeiter" Width="*">
                             <controls:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding EmployeePrice}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
+                                        <TextBlock Text="{Binding EmployeePrice}" />
+                                        <TextBlock Text="€" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </controls:DataGridTemplateColumn.CellTemplate>
                         </controls:DataGridTemplateColumn>
                         <controls:DataGridTemplateColumn Header="Preis für Gäste" Width="*">
                             <controls:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding GuestPrice}" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
+                                        <TextBlock Text="{Binding GuestPrice}" />
+                                        <TextBlock Text="€" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </controls:DataGridTemplateColumn.CellTemplate>
                         </controls:DataGridTemplateColumn>

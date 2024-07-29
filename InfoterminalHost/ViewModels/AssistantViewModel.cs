@@ -34,6 +34,8 @@ namespace InfoterminalHost.ViewModels
         [ObservableProperty]
         string prompt;
 
+        [ObservableProperty]
+        string loadingSpinnerVisibilityStatus;
 
         [ObservableProperty]
         string filteredDishesVisibilityStatus;
@@ -58,6 +60,7 @@ namespace InfoterminalHost.ViewModels
             prompt = "";
             filteredDishesVisibilityStatus = VisibilityTypes.Collapsed.ToString();
             filteredPersonsVisibilityStatus = VisibilityTypes.Collapsed.ToString();
+            loadingSpinnerVisibilityStatus = VisibilityTypes.Collapsed.ToString();
             filteredDishes = new ObservableCollection<ExtendedDish>();
             filteredPersons = new ObservableCollection<Person>();
             _roomsDataService = roomsDataService;
@@ -71,6 +74,7 @@ namespace InfoterminalHost.ViewModels
             filteredPersons.Clear();
 
             IsLoading = true;
+            LoadingSpinnerVisibilityStatus = VisibilityTypes.Visible.ToString();
 
             JsonResult prediction = await MakePredictionAsync(Prompt);
 
@@ -87,7 +91,6 @@ namespace InfoterminalHost.ViewModels
                         filteredDishes.Add(dish);
                     }
                     FilteredDishesVisibilityStatus = VisibilityTypes.Visible.ToString();
-                    IsLoading = false;
                     break;
 
                 case "SearchPerson":
@@ -98,12 +101,13 @@ namespace InfoterminalHost.ViewModels
                         filteredPersons.Add(person);
                     }
                     FilteredPersonsVisibilityStatus = VisibilityTypes.Visible.ToString();
-                    IsLoading = false;
                     break;
 
                 default:
                     break;
             }
+            LoadingSpinnerVisibilityStatus = VisibilityTypes.Visible.ToString();
+            IsLoading = false;          
         }
 
         private async Task<JsonResult> MakePredictionAsync(string prompt)
