@@ -14,6 +14,9 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using InfoterminalHost.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using InfoterminalHost.Models;
+using InfoterminalHost.Interfaces;
+using InfoterminalHost.Services;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,10 +30,21 @@ namespace InfoterminalHost.Views
     {
         public TimetablesViewModel ViewModel;
 
+        private readonly INavigationService _navigationService;
+
         public TimetablesPage()
         {
             ViewModel = App.HostContainer.Services.GetService<TimetablesViewModel>();
             this.InitializeComponent();
+            _navigationService = NavigationService.Instance;
+        }
+
+        private void SemesterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.DataContext is Semester semester)
+            {
+                _navigationService.Navigate(typeof(Views.AssistantPage));
+            }
         }
     }
 }

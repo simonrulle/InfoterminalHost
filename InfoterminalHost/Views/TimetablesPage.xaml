@@ -6,10 +6,33 @@
     xmlns:local="using:InfoterminalHost.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:model="using:InfoterminalHost.Models" 
     mc:Ignorable="d"
     >
 
+    <Grid>
+        <ListView ItemsSource="{x:Bind ViewModel.courses}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Expander Header="{Binding Name}">
+                        <ListView ItemsSource="{Binding Semester}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Content="{Binding Name}"
+                                        Click="SemesterButton_Click"
+                                        />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Expander>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+
+
+    <!--
     <Grid>
 
         <Grid.RowDefinitions>
@@ -25,4 +48,5 @@
         Source="https://www.hochschule-stralsund.de/storages/hs-stralsund/FAK_WS/Allgemein/FaK_WS_Stundenplaene/Sommersemester/Sommersemester_WInf-M.pdf" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
     </Grid>
+    -->
 </Page>

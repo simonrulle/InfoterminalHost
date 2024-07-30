@@ -1,10 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using InfoterminalHost.Interfaces;
+using InfoterminalHost.Models;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace InfoterminalHost.ViewModels
 {
@@ -12,10 +19,12 @@ namespace InfoterminalHost.ViewModels
     {
         private ITimetablesDataService _timetablesDataService;
 
-        public TimetablesViewModel(ITimetablesDataService timetablesDataService) 
+        public ObservableCollection<CourseOfStudy> courses { get; set; }
+
+        public TimetablesViewModel(ITimetablesDataService timetablesDataService)
         {
             _timetablesDataService = timetablesDataService;
-            var courses = _timetablesDataService.GetCoursesOfStudy();
+            courses = _timetablesDataService.GetCoursesOfStudy();
         }
     }
 }
