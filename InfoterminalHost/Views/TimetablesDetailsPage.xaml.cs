@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -31,6 +32,15 @@ namespace InfoterminalHost.Views
         {
             ViewModel = App.HostContainer.Services.GetService<TimetablesDetailsViewModel>();
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.Parameter != null)
+            {
+                ViewModel.TimetableSource = e.Parameter.ToString();
+            }
         }
     }
 }
