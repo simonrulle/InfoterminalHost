@@ -49,6 +49,10 @@ namespace InfoterminalHost.Services
             {
                 _navigationView.SelectedItem = (NavigationViewItem)_navigationView.SettingsItem;
             }
+            else if (_contentFrame.SourcePageType == typeof(Views.TimetablesDetailsPage))
+            {
+                _navigationView.SelectedItem = null;
+            }
             else if (_contentFrame.SourcePageType != null)
             {
                 _navigationView.SelectedItem = _navigationView.MenuItems

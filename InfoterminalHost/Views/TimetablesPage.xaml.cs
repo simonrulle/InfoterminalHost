@@ -43,7 +43,7 @@ namespace InfoterminalHost.Views
         {
             if (sender is Button button && button.DataContext is Semester semester)
             {
-                _navigationService.Navigate(typeof(Views.AssistantPage));
+                _navigationService.Navigate(typeof(Views.TimetablesDetailsPage));
             }
         }
     }

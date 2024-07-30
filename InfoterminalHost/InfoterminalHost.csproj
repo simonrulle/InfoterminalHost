@@ -17,6 +17,7 @@
     <None Remove="Views\HomePage.xaml" />
     <None Remove="Views\RoomsPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
+    <None Remove="Views\TimetablesDetailsPage.xaml" />
     <None Remove="Views\TimetablesPage.xaml" />
   </ItemGroup>
 
@@ -50,6 +51,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\TimetablesDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\TimetablesPage.xaml">

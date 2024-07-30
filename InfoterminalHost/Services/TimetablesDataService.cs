@@ -28,43 +28,69 @@ namespace InfoterminalHost.Services
             // Erstelle eine Liste von Kursen
             var coursesList = new ObservableCollection<CourseOfStudy>();
 
-            // Loop durch alle Kurse (Mapping!)
-            foreach (var courseNode in coursesNodes)
+            if (coursesNodes != null)
             {
-                // Neues Kursobjekt 
-                CourseOfStudy course = new CourseOfStudy();
-
-                /*
-                 * Map Name
-                 */
-                var courseNameWrapper = courseNode.SelectSingleNode(".//a[@class='accordion__header']");
-                course.Name = string.Join("", Regex.Split(courseNameWrapper.InnerText, @"(?:\r\n\t|\n|\r|\t)")).Replace("amp;", string.Empty).Trim();
-
-                /*
-                  * Map Semester
-                  */
-                var semesterWrapper = courseNode.SelectSingleNode(".//div[@class='csc-frame csc-frame-default frame-type-text frame-layout-0']");
-                if (semesterWrapper != null && semesterWrapper.ChildNodes.Count > 0)
+                // Loop durch alle Kurse (Mapping!)
+                foreach (var courseNode in coursesNodes)
                 {
-                    List<Semester> semesters = new List<Semester>();
+                    // Neues Kursobjekt 
+                    CourseOfStudy course = new CourseOfStudy();
 
-                    foreach (var semester in semesterWrapper.ChildNodes)
+                    /*
+                     * Map Name
+                     */
+                    var courseNameWrapper = courseNode.SelectSingleNode(".//a[@class='accordion__header']");
+                    course.Name = string.Join("", Regex.Split(courseNameWrapper.InnerText, @"(?:\r\n\t|\n|\r|\t)")).Replace("amp;", string.Empty).Trim();
+
+                    /*
+                      * Map Semester
+                      */
+                    var semesterWrapper = courseNode.SelectSingleNode(".//div[@class='csc-frame csc-frame-default frame-type-text frame-layout-0']");
+                    if (semesterWrapper != null && semesterWrapper.ChildNodes.Count > 0)
                     {
-                        if (semester.ChildNodes.Count > 0)
+                        List<Semester> semesters = new List<Semester>();
+
+                        foreach (var semester in semesterWrapper.ChildNodes)
                         {
-                            Semester semesterInfo = new Semester();
-                            semesterInfo.Name = semester.ChildNodes[0].InnerText;
-                            semesterInfo.Timetable = "https://www.hochschule-stralsund.de/" + semester.ChildNodes[0].GetAttributeValue("href", string.Empty);
-                            semesters.Add(semesterInfo);
-                        }                      
+                            if (semester.ChildNodes.Count > 0)
+                            {
+                                Semester semesterInfo = new Semester();
+                                semesterInfo.Name = semester.ChildNodes[0].InnerText;
+                                semesterInfo.Timetable = "https://www.hochschule-stralsund.de/" + semester.ChildNodes[0].GetAttributeValue("href", string.Empty);
+                                semesters.Add(semesterInfo);
+                            }
+                        }
+
+                        course.Semester = semesters;
                     }
 
-                    course.Semester = semesters;
+                    // Hinzufügen von Kurs in Liste
+                    coursesList.Add(course);
                 }
-
-                // Hinzufügen von Kurs in Liste
-                coursesList.Add(course);
             }
+            else
+            {
+                /*
+                 * Dummy zum testen (TODO Delete!!!)
+                 */
+                CourseOfStudy course1 = new CourseOfStudy();
+                Semester semester = new Semester() {
+                    Name = "WINF Sommersemester",
+                    Timetable = "https://www.hochschule-stralsund.de/storages/hs-stralsund/FAK_WS/Allgemein/FaK_WS_Stundenplaene/Sommersemester/Sommersemester_WInf-M.pdf",                   
+                };
+                course1.Name = "Wirtschaftsinformatik - Master";
+                course1.Semester = new List<Semester> { semester };
+                course1.Semester.Add(semester);
+                course1.Semester.Add(semester);
+                course1.Semester.Add(semester);
+                course1.Semester.Add(semester);
+                course1.Semester.Add(semester);
+                coursesList.Add(course1);
+                coursesList.Add(course1);
+                coursesList.Add(course1);
+                coursesList.Add(course1);
+            }
+
 
             // Rückgabe der Kurse als Liste
             return coursesList;

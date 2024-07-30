@@ -73,6 +73,7 @@ namespace InfoterminalHost
                 services.AddTransient<CafeteriaViewModel>();
                 services.AddTransient<RoomsViewModel>(); 
                 services.AddTransient<TimetablesViewModel>();
+                services.AddTransient<TimetablesDetailsViewModel>();
             }).Build();
         }
 
