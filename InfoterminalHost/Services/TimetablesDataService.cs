@@ -73,6 +73,7 @@ namespace InfoterminalHost.Services
                 /*
                  * Dummy zum testen (TODO Delete!!!)
                  */
+                // Course1
                 CourseOfStudy course1 = new CourseOfStudy();
                 Semester semester = new Semester() {
                     Name = "WINF Sommersemester",
@@ -81,14 +82,44 @@ namespace InfoterminalHost.Services
                 course1.Name = "Wirtschaftsinformatik - Master";
                 course1.Semester = new List<Semester> { semester };
                 course1.Semester.Add(semester);
-                course1.Semester.Add(semester);
-                course1.Semester.Add(semester);
-                course1.Semester.Add(semester);
-                course1.Semester.Add(semester);
                 coursesList.Add(course1);
-                coursesList.Add(course1);
-                coursesList.Add(course1);
-                coursesList.Add(course1);
+
+                // Course2
+                CourseOfStudy course2 = new CourseOfStudy();
+                Semester semester21 = new Semester()
+                {
+                    Name = "2. Fachsemester BWL ",
+                    Timetable = "https://www.hochschule-stralsund.de/storages/hs-stralsund/FAK_WS/Allgemein/FaK_WS_Stundenplaene/Sommersemester/Sommersemester_WInf-M.pdf",
+                };
+                Semester semester22 = new Semester()
+                {
+                    Name = "4. Fachsemester BWL ",
+                    Timetable = "https://www.hochschule-stralsund.de/storages/hs-stralsund/FAK_WS/Allgemein/FaK_WS_Stundenplaene/Sommersemester/Sommersemester_WInf-M.pdf",
+                };
+                Semester semester23 = new Semester()
+                {
+                    Name = "6. Fachsemester BWL ",
+                    Timetable = "https://www.hochschule-stralsund.de/storages/hs-stralsund/FAK_WS/Allgemein/FaK_WS_Stundenplaene/Sommersemester/Sommersemester_WInf-M.pdf",
+                };
+                course2.Name = "BWL - Bachelor";
+                course2.Semester = new List<Semester> { semester21, semester22, semester23 };
+                coursesList.Add(course2);
+
+                // Course3
+                CourseOfStudy course3 = new CourseOfStudy();
+                Semester semester31 = new Semester()
+                {
+                    Name = "2. Fachsemester GOEK ",
+                    Timetable = "https://www.hochschule-stralsund.de/storages/hs-stralsund/FAK_WS/Allgemein/FaK_WS_Stundenplaene/Sommersemester/Sommersemester_WInf-M.pdf",
+                };
+                Semester semester32 = new Semester()
+                {
+                    Name = "4. Fachsemester GOEK ",
+                    Timetable = "https://www.hochschule-stralsund.de/storages/hs-stralsund/FAK_WS/Allgemein/FaK_WS_Stundenplaene/Sommersemester/Sommersemester_WInf-M.pdf",
+                };
+                course3.Name = "GOEK - Bachelor";
+                course3.Semester = new List<Semester> { semester31, semester32 };
+                coursesList.Add(course3);
             }
 
 
