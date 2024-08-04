@@ -11,16 +11,24 @@
     >
 
     <Grid>
-        <ListView ItemsSource="{x:Bind ViewModel.courses}">
+        <!-- Definiere die Zeilen -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView ItemsSource="{x:Bind ViewModel.courses}" MinWidth="1000" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,12,0,12">
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Expander Header="{Binding Name}">
+                <DataTemplate >
+                    <Expander Header="{Binding Name}" MinWidth="1000" MinHeight="80" Margin="0,12,0,12">
                         <ListView ItemsSource="{Binding Semester}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Button Content="{Binding Name}"
-                                        Click="SemesterButton_Click"
-                                        />
+                                    Click="SemesterButton_Click"
+                                    />
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
@@ -28,6 +36,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
     </Grid>
-
 </Page>
