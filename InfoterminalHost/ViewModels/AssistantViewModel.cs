@@ -124,158 +124,85 @@ namespace InfoterminalHost.ViewModels
             }
         }
 
-        private List<ExtendedDish> ApplyDishesFilter(List<ExtendedDish> dishList, FilterObject filter)
+        private List<ExtendedDish> ApplyDishesFilter(IEnumerable<ExtendedDish> dishList, FilterObject filter)
         {
-            List<ExtendedDish> tempDishList = dishList;
-            List<ExtendedDish> dishesToDelete = new List<ExtendedDish>();
+            var query = dishList.AsQueryable();
 
-            foreach (var d in dishList)
+            /*
+             * Date TODO
+             */
+
+            if (!string.IsNullOrEmpty(filter.CategoryName))
             {
-                bool remove = false;
-
-                // Filter Date
-                if (filter.Date != null)
-                {
-                    if (!d.Date.Contains(filter.Date))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter CategoryName
-                if (filter.CategoryName != null)
-                {
-                    if (!d.CategoryName.Contains(filter.CategoryName))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter DishName
-                if (filter.DishName != null)
-                {
-                    if (!d.Name.Contains(filter.DishName))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter CategoryName
-                if (filter.CategoryName != null)
-                {
-                    if (!d.CategoryName.Contains(filter.CategoryName))
-                    {
-                        remove = true;
-                    }
-                }
-
-
-                /*
-                 * 
-                 * TODO weitere Filter
-                 * 
-                 */
-
-                if (remove)
-                {
-                    dishesToDelete.Add(d);
-                }
-
+                query = query.Where(o => o.CategoryName != null && o.CategoryName.Contains(filter.CategoryName));
             }
 
-            foreach (var d in dishesToDelete)
+            if (!string.IsNullOrEmpty(filter.DishName))
             {
-                tempDishList.Remove(d);
+                query = query.Where(o => o.Name != null && o.Name.Contains(filter.DishName));
             }
 
-            return tempDishList;
+            // Price TODO
+            /*
+            if (filter.Price.HasValue)
+            {
+                query = query.Where(o => o.Alter == filter.Alter.Value);
+            }
+            */
+
+            if (!string.IsNullOrEmpty(filter.Ingredient))
+            {
+                query = query.Where(o => o.Ingredient != null && o.Ingredient.Contains(filter.Ingredient));
+            }
+
+            return query.ToList();
         }
 
-        private ObservableCollection<Person> ApplyPersonsFilter(ObservableCollection<Person> persons, FilterObject filter)
+        private List<Person> ApplyPersonsFilter(IEnumerable<Person> persons, FilterObject filter)
         {
-            ObservableCollection<Person> tempPersonList = persons;
-            ObservableCollection<Person> PersonsToDelete = new ObservableCollection<Person>();
+            var query = persons.AsQueryable();
 
-            foreach (var p in persons)
+            if (!string.IsNullOrEmpty(filter.PersonName))
             {
-                bool remove = false;
-
-                // Filter Fullname
-                if (filter.PersonName != null)
-                {
-                    if (!p.Fullname.Contains(filter.PersonName))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter Titel
-                if (filter.Title != null)
-                {
-                    if (!p.Title.Contains(filter.Title))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter Role
-                if (filter.Role != null)
-                {
-                    if (!p.Role.Contains(filter.Role))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter faculty
-                if (filter.Faculty != null)
-                {
-                    if (!p.Faculty.Contains(filter.Faculty))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter PhoneNumber
-                if (filter.PhoneNumber != null)
-                {
-                    if (!p.PhoneNumber.Contains(filter.PhoneNumber))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter Building
-                if (filter.Building != null)
-                {
-                    if (!p.Building.Contains(filter.Building))
-                    {
-                        remove = true;
-                    }
-                }
-
-                // Filter Room
-                if (filter.Room != null)
-                {
-                    if (!p.Room.Contains(filter.Room))
-                    {
-                        remove = true;
-                    }
-                }
-
-
-                if (remove)
-                {
-                    PersonsToDelete.Add(p);
-                }
+                query = query.Where(o => o.Fullname != null && o.Fullname.Contains(filter.PersonName));
             }
 
-            foreach (var p in PersonsToDelete)
+            if (!string.IsNullOrEmpty(filter.Title))
             {
-                tempPersonList.Remove(p);
+                query = query.Where(o => o.Title != null && o.Title.Contains(filter.Title));
             }
 
-            return tempPersonList;
+            if (!string.IsNullOrEmpty(filter.Role))
+            {
+                query = query.Where(o => o.Role != null && o.Role.Contains(filter.Role));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Faculty))
+            {
+                query = query.Where(o => o.Faculty != null && o.Faculty.Contains(filter.Faculty));
+            }
+
+            if (!string.IsNullOrEmpty(filter.PhoneNumber))
+            {
+                query = query.Where(o => o.PhoneNumber != null && o.PhoneNumber.Contains(filter.PhoneNumber));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Building))
+            {
+                query = query.Where(o => o.Building != null && o.Building.Contains(filter.Building));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Room))
+            {
+                query = query.Where(o => o.Room != null && o.Room.Contains(filter.Room));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Email))
+            {
+                query = query.Where(o => o.Emails != null && o.Emails.Contains(filter.Email));
+            }
+
+            return query.ToList();
         }
     }
 }
