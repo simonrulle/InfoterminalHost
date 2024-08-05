@@ -27,7 +27,7 @@ namespace InfoterminalHost.Models
         [JsonProperty("resolutions")]
         public List<Resolution> Resolutions { get; set; }
 
-        [JsonProperty("extraInformations")]
+        [JsonProperty("extraInformation")]
         public List<ExtraInformation> ExtraInformations { get; set; }
     }
 }

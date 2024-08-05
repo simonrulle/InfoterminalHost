@@ -10,7 +10,7 @@ namespace InfoterminalHost.Models
     {
         public string Building { get; set; }
         public string CategoryName { get; set; }
-        public string Date { get; set; }
+        public DateInfo DateInfo { get; set; }
         public string DishName { get; set; }
         public string Email { get; set; }
         public string Faculty { get; set; }

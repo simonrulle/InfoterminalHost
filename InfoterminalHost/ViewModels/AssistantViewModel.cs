@@ -128,9 +128,25 @@ namespace InfoterminalHost.ViewModels
         {
             var query = dishList.AsQueryable();
 
-            /*
-             * Date TODO
-             */
+            if (filter.DateInfo != null)
+            {
+                switch (filter.DateInfo.DateType)
+                {
+                    case "TemporalSpanResolution":
+                        // Konvertierung in DateTime für Datumsoperationen
+                        DateTime startDate = DateTime.Parse(filter.DateInfo.StartDate);
+                        DateTime endDate = DateTime.Parse(filter.DateInfo.EndDate);
+                        query = query.Where(o => o.Date != null && DateTime.Parse(o.Date) >= startDate && DateTime.Parse(o.Date) <= endDate);
+                        break;
+
+                    case "DateTimeResolution":
+                        query = query.Where(o => o.Date != null && o.Date.Contains(filter.DateInfo.Date));
+                        break;
+
+                    default:
+                        break;
+                }
+            }
 
             if (!string.IsNullOrEmpty(filter.CategoryName))
             {

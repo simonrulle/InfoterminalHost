@@ -20,5 +20,11 @@ namespace InfoterminalHost.Models
 
         [JsonProperty("value")]
         public string Value { get; set; }
+
+        [JsonProperty("begin")]
+        public string Begin { get; set; }
+
+        [JsonProperty("end")]
+        public string End { get; set; }
     }
 }

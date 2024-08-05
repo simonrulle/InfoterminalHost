@@ -17,6 +17,7 @@ namespace InfoterminalHost.Services
         {
             // Filterobjekt, welches zurückgegeben wird
             FilterObject filterObject = new FilterObject();
+            filterObject.DateInfo = new DateInfo();
             Entity entity;
 
             // Map Building
@@ -43,12 +44,40 @@ namespace InfoterminalHost.Services
             }
             entity = null;
 
-            /*
-             * 
-             * TODO DATE FILTER
-             * 
-             */
-            filterObject.Date = null;
+            // Map Date
+            entity = entities.FirstOrDefault(x => x.Category == "Date") ?? null;
+            if (entity != null && entity.ExtraInformations.Any(x => x.Value == "datetime.daterange"))
+            {
+                var span = entity.Resolutions.FirstOrDefault(x => x.ResolutionKind == "TemporalSpanResolution") ?? null;
+                if(span != null)
+                {
+                    filterObject.DateInfo.StartDate = span.Begin;
+                    filterObject.DateInfo.EndDate = span.End;
+                    filterObject.DateInfo.DateType = span.ResolutionKind;
+                }
+                else
+                {
+                    filterObject.DateInfo = null;
+                }
+            }
+            else if (entity != null && entity.ExtraInformations.Any(x => x.Value == "datetime.date"))
+            {
+                var span = entity.Resolutions.FirstOrDefault(x => x.ResolutionKind == "DateTimeResolution") ?? null;
+                if (span != null)
+                {
+                    filterObject.DateInfo.Date = span.Value;
+                    filterObject.DateInfo.DateType = span.ResolutionKind;
+                }
+                else
+                {
+                    filterObject.DateInfo = null;
+                }
+            }
+            else
+            {
+                filterObject.DateInfo = null;
+            }
+            entity = null;
 
 
             // Map DishName
@@ -75,13 +104,17 @@ namespace InfoterminalHost.Services
             }
             entity = null;
 
-            /*
-             * 
-             * TODO FACULTY FILTER
-             * 
-             */
-            filterObject.Faculty = null;
-
+            // Map Faculty
+            entity = entities.FirstOrDefault(x => x.Category == "Faculty") ?? null;
+            if (entity != null)
+            {
+                filterObject.Faculty = entity.Text;
+            }
+            else
+            {
+                filterObject.Faculty = null;
+            }
+            entity = null;
 
             /*
              * 
