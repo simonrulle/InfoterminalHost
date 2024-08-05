@@ -156,7 +156,7 @@ namespace InfoterminalHost.Services
                 Match match = Regex.Match(entity.Text, pattern);
                 if (match.Success)
                 {
-                    filterObject.Price = match.Value;
+                    filterObject.Price = Convert.ToDecimal(match.Value);
                 }
                 else
                 {

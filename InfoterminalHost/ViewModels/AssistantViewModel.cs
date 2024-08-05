@@ -128,6 +128,7 @@ namespace InfoterminalHost.ViewModels
         {
             var query = dishList.AsQueryable();
 
+            // Date Logik
             if (filter.DateInfo != null)
             {
                 switch (filter.DateInfo.DateType)
@@ -158,13 +159,80 @@ namespace InfoterminalHost.ViewModels
                 query = query.Where(o => o.Name != null && o.Name.Contains(filter.DishName));
             }
 
-            // Price TODO
-            /*
-            if (filter.Price.HasValue)
+            // Preis Logik
+            if (filter.Price != null)
             {
-                query = query.Where(o => o.Alter == filter.Alter.Value);
+                switch (filter.PriceCategory)
+                {
+                    case "Student":
+                        switch (filter.PriceInterpretation)
+                        {
+                            case "FilterHigher":
+                                query = query.Where(o => o.StudentPrice >= filter.Price);
+                                break;
+
+                            case "FilterLower":
+                                query = query.Where(o => o.StudentPrice <= filter.Price);
+                                break;
+
+                            default:
+                                query = query.Where(o => o.StudentPrice == filter.Price);
+                                break;
+                        }
+                        break;
+
+                    case "Employee":
+                        switch (filter.PriceInterpretation)
+                        {
+                            case "FilterHigher":
+                                query = query.Where(o => o.EmployeePrice >= filter.Price);
+                                break;
+
+                            case "FilterLower":
+                                query = query.Where(o => o.EmployeePrice <= filter.Price);
+                                break;
+
+                            default:
+                                query = query.Where(o => o.EmployeePrice == filter.Price);
+                                break;
+                        }
+                        break;
+
+                    case "Guest":
+                        switch (filter.PriceInterpretation)
+                        {
+                            case "FilterHigher":
+                                query = query.Where(o => o.GuestPrice >= filter.Price);
+                                break;
+
+                            case "FilterLower":
+                                query = query.Where(o => o.GuestPrice <= filter.Price);
+                                break;
+
+                            default:
+                                query = query.Where(o => o.GuestPrice == filter.Price);
+                                break;
+                        }
+                        break;
+
+                    default:
+                        switch (filter.PriceInterpretation)
+                        {
+                            case "FilterHigher":
+                                query = query.Where(o => o.StudentPrice >= filter.Price || o.EmployeePrice >= filter.Price || o.GuestPrice >= filter.Price);
+                                break;
+
+                            case "FilterLower":
+                                query = query.Where(o => o.StudentPrice <= filter.Price || o.EmployeePrice <= filter.Price || o.GuestPrice <= filter.Price);
+                                break;
+
+                            default:
+                                query = query.Where(o => o.StudentPrice == filter.Price || o.EmployeePrice == filter.Price || o.GuestPrice == filter.Price);
+                                break;
+                        }
+                        break;
+                }
             }
-            */
 
             if (!string.IsNullOrEmpty(filter.Ingredient))
             {

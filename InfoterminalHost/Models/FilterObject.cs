@@ -17,7 +17,7 @@ namespace InfoterminalHost.Models
         public string Ingredient { get; set; }
         public string PersonName { get; set; }
         public string PhoneNumber { get; set; }
-        public string Price { get; set; }
+        public decimal? Price { get; set; }
         public string PriceCategory { get; set; }
         public string PriceInterpretation { get; set; }
         public string Role { get; set; }
