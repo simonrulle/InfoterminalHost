@@ -22,7 +22,7 @@ namespace InfoterminalHost.ViewModels
     {
         private ICafeteriaDataService _cafeteriaDataService;
 
-        private IRoomsDataService _roomsDataService;
+        private IPersonsDataService _personsDataService;
 
         private IMapperService _mapperService;
 
@@ -50,10 +50,10 @@ namespace InfoterminalHost.ViewModels
 
 
 
-        public AssistantViewModel(ICafeteriaDataService cafeteriaDataService, IRoomsDataService roomsDataService, IMapperService mapperService)
+        public AssistantViewModel(ICafeteriaDataService cafeteriaDataService, IPersonsDataService personsDataService, IMapperService mapperService)
         {
             _cafeteriaDataService = cafeteriaDataService;
-            _roomsDataService = roomsDataService;
+            _personsDataService = personsDataService;
             _mapperService = mapperService;
             this.predictionHandler = new PredictionHandler();
             isLoading = false;
@@ -63,7 +63,7 @@ namespace InfoterminalHost.ViewModels
             loadingSpinnerVisibilityStatus = VisibilityTypes.Collapsed.ToString();
             filteredDishes = new ObservableCollection<ExtendedDish>();
             filteredPersons = new ObservableCollection<Person>();
-            _roomsDataService = roomsDataService;
+            _personsDataService = personsDataService;
         }
 
         public async void OnAiSearchClick(object sender, RoutedEventArgs e)
@@ -94,7 +94,7 @@ namespace InfoterminalHost.ViewModels
                     break;
 
                 case "SearchPerson":
-                    ObservableCollection<Person> persons = _roomsDataService.GetPersonList();
+                    ObservableCollection<Person> persons = _personsDataService.GetPersonList();
                     var x = ApplyPersonsFilter(persons, filter);
                     foreach (Person person in x)
                     {

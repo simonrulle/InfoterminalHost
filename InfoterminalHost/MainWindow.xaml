@@ -45,7 +45,7 @@
                 <NavigationViewItem Icon="Home" Content="Start" Tag="InfoterminalHost.Views.HomePage"/>
                 <NavigationViewItem Icon="Home" Content="KI-Assistent" Tag="InfoterminalHost.Views.AssistantPage"/>
                 <NavigationViewItem Icon="Home" Content="Mensaplan" Tag="InfoterminalHost.Views.CafeteriaPage"/>
-                <NavigationViewItem Icon="Home" Content="Raumplan" Tag="InfoterminalHost.Views.RoomsPage"/>
+                <NavigationViewItem Icon="Home" Content="Personenplan" Tag="InfoterminalHost.Views.PersonsPage"/>
                 <NavigationViewItem Icon="Home" Content="Stundenpläne" Tag="InfoterminalHost.Views.TimetablesPage"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" />

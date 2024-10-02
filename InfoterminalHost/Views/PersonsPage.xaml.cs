@@ -23,13 +23,13 @@ namespace InfoterminalHost.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RoomsPage : Page
+    public sealed partial class PersonsPage : Page
     {
-        public RoomsViewModel ViewModel;
+        public PersonsViewModel ViewModel;
 
-        public RoomsPage()
+        public PersonsPage()
         {
-            ViewModel = App.HostContainer.Services.GetService<RoomsViewModel>();
+            ViewModel = App.HostContainer.Services.GetService<PersonsViewModel>();
             this.InitializeComponent();
         }
     }

@@ -17,18 +17,18 @@ using System.Threading.Tasks;
 
 namespace InfoterminalHost.ViewModels
 {
-    public partial class RoomsViewModel : ObservableObject
+    public partial class PersonsViewModel : ObservableObject
     {
-        private IRoomsDataService _roomsDataService;
+        private IPersonsDataService _personsDataService;
 
         [ObservableProperty]
         private bool isDataLoadingError = false;
 
         public ObservableCollection<Person> persons { get; set; }
 
-        public RoomsViewModel(IRoomsDataService roomsDataService)
+        public PersonsViewModel(IPersonsDataService personsDataService)
         {
-            _roomsDataService = roomsDataService;
+            _personsDataService = personsDataService;
             PopulateData();
         }
  
@@ -36,7 +36,7 @@ namespace InfoterminalHost.ViewModels
         {
             try
             {
-                persons = _roomsDataService.GetPersonList();               
+                persons = _personsDataService.GetPersonList();               
             }
             catch  
             {

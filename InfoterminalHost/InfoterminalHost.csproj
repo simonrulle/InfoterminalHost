@@ -15,7 +15,7 @@
     <None Remove="Views\AssistantPage.xaml" />
     <None Remove="Views\CafeteriaPage.xaml" />
     <None Remove="Views\HomePage.xaml" />
-    <None Remove="Views\RoomsPage.xaml" />
+    <None Remove="Views\PersonsPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
     <None Remove="Views\TimetablesDetailsPage.xaml" />
     <None Remove="Views\TimetablesPage.xaml" />
@@ -68,7 +68,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\RoomsPage.xaml">
+    <Page Update="Views\PersonsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

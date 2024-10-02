@@ -42,8 +42,8 @@ namespace InfoterminalHost.ViewModels
                         _navigationService.Navigate(typeof(Views.CafeteriaPage));
                         break;
 
-                    case "Raumplan":
-                        _navigationService.Navigate(typeof(Views.RoomsPage));
+                    case "Personenplan":
+                        _navigationService.Navigate(typeof(Views.PersonsPage));
                         break;
 
                     case "Neuigkeiten":

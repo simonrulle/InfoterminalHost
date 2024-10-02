@@ -29,7 +29,7 @@
             <Button Content="Mensaplan" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="2" Stretch="Uniform" Margin="10">
-            <Button Content="Raumplan" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
+            <Button Content="Personenplan" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="3" Stretch="Uniform" Margin="10">
             <Button Content="Neuigkeiten" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>

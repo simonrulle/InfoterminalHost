@@ -65,13 +65,13 @@ namespace InfoterminalHost
             {
                 services.AddSingleton<INavigationService, NavigationService>();
                 services.AddSingleton<ICafeteriaDataService, CafeteriaDataService>();
-                services.AddSingleton<IRoomsDataService, RoomsDataService>();
+                services.AddSingleton<IPersonsDataService, PersonsDataService>();
                 services.AddSingleton<IMapperService, MapperService>();
                 services.AddSingleton<ITimetablesDataService, TimetablesDataService>();
                 services.AddTransient<HomeViewModel>();
                 services.AddTransient<AssistantViewModel>();
                 services.AddTransient<CafeteriaViewModel>();
-                services.AddTransient<RoomsViewModel>(); 
+                services.AddTransient<PersonsViewModel>(); 
                 services.AddTransient<TimetablesViewModel>();
                 services.AddTransient<TimetablesDetailsViewModel>();
             }).Build();

@@ -13,9 +13,9 @@ using Windows.Media.Protection.PlayReady;
 
 namespace InfoterminalHost.Services
 {
-    public class RoomsDataService : IRoomsDataService
+    public class PersonsDataService : IPersonsDataService
     {
-        public RoomsDataService() { }
+        public PersonsDataService() { }
 
         public ObservableCollection<Person> GetPersonList()
         {
