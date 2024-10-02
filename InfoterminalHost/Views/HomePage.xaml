@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:InfoterminalHost.Models"
     mc:Ignorable="d"
+    Background="White"
     >
 
     <Grid Margin="20">
@@ -32,16 +33,16 @@
             <Button Content="Personenplan" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="3" Stretch="Uniform" Margin="10">
-            <Button Content="Neuigkeiten" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
-        </Viewbox>
-        <Viewbox Grid.Row="1" Grid.Column="0" Stretch="Uniform" Margin="10">
-            <Button Content="Busplan" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
-        </Viewbox>
-        <Viewbox Grid.Row="1" Grid.Column="1" Stretch="Uniform" Margin="10">
             <Button Content="Stundenpläne" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
         </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="0" Stretch="Uniform" Margin="10">
+            <Button Content="Raumbelegungen" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="1" Stretch="Uniform" Margin="10">
+            <Button Content="Neuigkeiten" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
+        </Viewbox>
         <Viewbox Grid.Row="1" Grid.Column="2" Stretch="Uniform" Margin="10">
-            <Button Content="Wetter" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
+            <Button Content="Busplan" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>
         </Viewbox>
         <Viewbox Grid.Row="1" Grid.Column="3" Stretch="Uniform" Margin="10">
             <Button Content="Einstellungen" Width="300" Height="400" Click="{x:Bind ViewModel.OnButtonClick}"/>

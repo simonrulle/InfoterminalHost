@@ -47,6 +47,7 @@
                 <NavigationViewItem Icon="Home" Content="Mensaplan" Tag="InfoterminalHost.Views.CafeteriaPage"/>
                 <NavigationViewItem Icon="Home" Content="Personenplan" Tag="InfoterminalHost.Views.PersonsPage"/>
                 <NavigationViewItem Icon="Home" Content="Stundenpläne" Tag="InfoterminalHost.Views.TimetablesPage"/>
+                <NavigationViewItem Icon="Home" Content="Raumbelegungen" Tag="InfoterminalHost.Views.RoomOccupancyPage"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" />
         </NavigationView>

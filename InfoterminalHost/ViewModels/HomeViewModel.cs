@@ -56,7 +56,8 @@ namespace InfoterminalHost.ViewModels
                         _navigationService.Navigate(typeof(Views.TimetablesPage));
                         break;
 
-                    case "Wetter":
+                    case "Raumbelegungen":
+                        _navigationService.Navigate(typeof(Views.RoomOccupancyPage));
                         break;
 
                     case "Einstellungen":

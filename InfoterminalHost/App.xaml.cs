@@ -74,6 +74,7 @@ namespace InfoterminalHost
                 services.AddTransient<PersonsViewModel>(); 
                 services.AddTransient<TimetablesViewModel>();
                 services.AddTransient<TimetablesDetailsViewModel>();
+                services.AddTransient<RoomOccupancyViewModel>();
             }).Build();
         }
 
