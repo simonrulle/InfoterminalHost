@@ -8,23 +8,26 @@ using Azure;
 using Azure.AI.Language.Conversations;
 using Azure.Core;
 using Azure.Core.Serialization;
+using InfoterminalHost.Services;
 
 namespace InfoterminalHost.Clients
 {
     public class PredictionHandler
     {
+        ConfigurationHelperService configHelper = new ConfigurationHelperService();
+
+        public ConversationAnalysisClient predictionClient { get; private set; }
+
         public PredictionHandler()
         {
             predictionClient = InitializeClient();
         }
 
-        public ConversationAnalysisClient predictionClient { get; private set; }
-
         public async Task<Response> MakePredictionAsync(string input)
         {
             // CLU-Projekt credentials
-            string projectName = "InformationTerminal";
-            string deploymentName = "InfoTerminalProdDeployment";
+            string projectName = configHelper.GetConfigurationValue("AzureLanguageService:ProjectName");
+            string deploymentName = configHelper.GetConfigurationValue("AzureLanguageService:DeploymentName");
 
             // Request data aus anonymen Klassen
             var data = new
@@ -65,12 +68,11 @@ namespace InfoterminalHost.Clients
             return response;
         }
 
-        private static ConversationAnalysisClient InitializeClient()
+        private ConversationAnalysisClient InitializeClient()
         {
-            // TODO credentials
-            Uri endpoint = new Uri("https://informationterminalhostlanguage01.cognitiveservices.azure.com/");
+            Uri endpoint = new Uri(configHelper.GetConfigurationValue("AzureLanguageService:ServiceEndpointUri"));
 
-            AzureKeyCredential credential = new AzureKeyCredential("3036306bd67d49b3bc24621977f73a46");
+            AzureKeyCredential credential = new AzureKeyCredential(configHelper.GetConfigurationValue("AzureLanguageService:ServiceSecret"));
 
             ConversationAnalysisClient client = new ConversationAnalysisClient(endpoint, credential);
 
